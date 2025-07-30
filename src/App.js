@@ -1,7 +1,10 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+
 const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
+const customerRoutes = require('./routes/customerRoutes');
 
 dotenv.config();
 connectDB();
@@ -13,8 +16,10 @@ app.use(express.json());
 app.use('/api/products', productRoutes);
 
 // User routes
-const userRoutes = require('./Routes/userRoutes');
 app.use('/api/users', userRoutes);
+
+// Customer routes
+app.use('/api/customers', customerRoutes);
 
 // Base route
 app.get('/', (req, res) => {
